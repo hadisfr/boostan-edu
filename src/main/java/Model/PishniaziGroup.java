@@ -9,7 +9,10 @@ public class PishniaziGroup {
         this.pishniazis = pishniazis;
     }
 
-    public Boolean eval(Student student){
-        return null;
+    public boolean eval(Student student) {
+        for (Pishniazi pishniazi : pishniazis)
+            if (!pishniazi.eval(student))
+                return false;
+        return true;
     }
 }
