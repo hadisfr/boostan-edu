@@ -1,5 +1,4 @@
-import Model.Course;
-import Model.Pishniazi;
+package main.java.Model;
 
 public class CourseHamniazi extends Pishniazi {
     Course course;
