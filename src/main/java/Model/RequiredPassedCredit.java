@@ -1,6 +1,6 @@
 package main.java.Model;
 
-public class RequiredPassedCredit extends Pishniazi {
+public class RequiredPassedCredit implements Pishniazi {
 
     private float credit;
 
@@ -8,7 +8,8 @@ public class RequiredPassedCredit extends Pishniazi {
         this.credit = credit;
     }
 
-    public float getCredit() {
-        return credit;
+    @Override
+    public boolean eval(Student student) {
+        return student.getNumberOfPassedCredits() >= credit;
     }
 }

@@ -1,7 +1,7 @@
 package main.java.Model;
 
 public class CourseEffectlessOnGPA extends CourseEnrollmentState {
-    public CourseEffectlessOnGPA(Boolean hasEffectOnGPA, Boolean countedAsPassedUnit) {
+    public CourseEffectlessOnGPA(boolean hasEffectOnGPA, boolean countedAsPassedUnit) {
         super(hasEffectOnGPA, countedAsPassedUnit);
     }
 }

@@ -8,10 +8,6 @@ public class Student extends Person {
         return sid;
     }
 
-    public void setSid(StudentID sid) {
-        this.sid = sid;
-    }
-
     public Student(PersonName name, NationalID nid, StudentID sid, MajorYear majorYear) {
         super(name, nid);
         this.sid = sid;
@@ -22,7 +18,15 @@ public class Student extends Person {
         return majorYear;
     }
 
-    public void setMajorYear(MajorYear majorYear) {
-        this.majorYear = majorYear;
+    public boolean hasTakenCourse(Course course) {
+        return true;
+    }
+
+    public boolean hasPassedCourse(Course course) {
+        return true;
+    }
+
+    public int getNumberOfPassedCredits() {
+        return 0;
     }
 }

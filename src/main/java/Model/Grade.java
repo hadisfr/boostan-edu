@@ -1,13 +1,13 @@
 package main.java.Model;
 
 public abstract class Grade {
-    private Boolean isReported;
+    private boolean isReported;
 
-    public Grade(Boolean isReported) {
+    public Grade(boolean isReported) {
         this.isReported = isReported;
     }
 
-    public Boolean getReported() {
+    public boolean getReported() {
         return isReported;
     }
 }

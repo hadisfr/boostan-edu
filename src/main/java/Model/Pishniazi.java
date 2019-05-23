@@ -1,5 +1,5 @@
 package main.java.Model;
 
-public abstract class Pishniazi {
-    public abstract boolean eval(Student student);
+public interface Pishniazi {
+    boolean eval(Student student);
 }

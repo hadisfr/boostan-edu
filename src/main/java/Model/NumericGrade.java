@@ -3,7 +3,7 @@ package main.java.Model;
 public class NumericGrade extends Grade {
     private float value;
 
-    public NumericGrade(Boolean isReported, float value) {
+    public NumericGrade(boolean isReported, float value) {
         super(isReported);
         this.value = value;
     }

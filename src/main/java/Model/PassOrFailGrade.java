@@ -1,14 +1,14 @@
 package main.java.Model;
 
 public class PassOrFailGrade extends Grade {
-    private Boolean value;
+    private boolean value;
 
-    public PassOrFailGrade(Boolean isReported, Boolean value) {
+    public PassOrFailGrade(boolean isReported, boolean value) {
         super(isReported);
         this.value = value;
     }
 
-    public Boolean getValue() {
+    public boolean getValue() {
         return value;
     }
 }
