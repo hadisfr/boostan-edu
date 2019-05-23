@@ -23,4 +23,11 @@ public class CourseOffering {
         this.examDate = examDate;
         this.classTime = classTime;
     }
+
+    public Course getCourse() {
+        return course;
+    }
+    public boolean isEquivalent(Course course) {
+        return this.course.isEquivalent(course);
+    }
 }
