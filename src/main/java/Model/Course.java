@@ -8,13 +8,15 @@ public class Course {
     private Faculty faculty;
     private HashSet<Course> equivalents;
     private Grade.Type gradeType;
+    private boolean effectLessOnGPA;
 
-    public Course(String name, CourseId id, Faculty faculty, Grade.Type gradeType) {
+    public Course(String name, CourseId id, Faculty faculty, Grade.Type gradeType, boolean effectLessOnGPA) {
         this.name = name;
         this.id = id;
         this.faculty = faculty;
         equivalents = new HashSet<Course>();
         this.gradeType = gradeType;
+        this.effectLessOnGPA = effectLessOnGPA;
     }
 
     public void addEquivalent(Course equivalent) {

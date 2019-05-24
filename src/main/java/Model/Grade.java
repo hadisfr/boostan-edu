@@ -9,6 +9,7 @@ public abstract class Grade {
 
     public Grade(boolean isReported, Type type) {
         this.isReported = isReported;
+        this.type = type;
     }
 
     public boolean getReported() {

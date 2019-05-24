@@ -26,15 +26,13 @@ public class CourseEnrollment {
     public void setGrade(Grade grade) {
         if (grade.getType() != this.grade.getType())
             throw new IllegalArgumentException();
+        if (!(state instanceof CourseInProgress))
+            throw new IllegalStateException();
         this.grade = grade;
-        inferState();
     }
 
-    private void inferState() {
-        state = grade.isLessThan(passGrade) ?
-                (effectlessOnGPA ? new CourseFailedEffectlessOnGPA() : new CourseFailed()) :
-                (effectlessOnGPA ? new CoursePassedEffectlessOnGPA() : new CoursePassed())
-        ;
+    public void finalizeGrade() {
+        state.finalizeGrade(this.grade, this.passGrade, this.effectlessOnGPA);
     }
 
     Grade getGrade() {
@@ -46,13 +44,16 @@ public class CourseEnrollment {
     }
 
     public void withdraw() {
-        if (!(state instanceof CourseInProgress))
-            throw new IllegalStateException();
-        state = new CourseWithdrawn();
+        state = state.withdraw();
     }
 
-    public void setEffectlessOnGPA(boolean effectlessOnGPA) {
+    public void setEffectlessOnGPA() {
+        state = state.setEffectlessOnGPA();
         this.effectlessOnGPA = effectlessOnGPA;
-        inferState();
+    }
+
+    public void setEffectiveOnGPA() {
+        state = state.setEffectiveOnGPA();
+        this.effectlessOnGPA = effectlessOnGPA;
     }
 }
