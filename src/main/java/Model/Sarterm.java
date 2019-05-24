@@ -1,5 +1,10 @@
 package main.java.Model;
 
 public class Sarterm {
-    Semester semester;
+    private Semester semester;
+    private Student student;
+
+    public NumericGrade getPassGrade() {
+        return student.getPassGrade();
+    }
 }

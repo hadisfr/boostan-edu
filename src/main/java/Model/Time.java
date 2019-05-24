@@ -37,7 +37,7 @@ public class Time {
         return toMinute() < time.toMinute();
     }
 
-    public boolean isLessThanEqual(Time time){
+    public boolean isLessThanEqual(Time time) {
         return isLessThan(time) || equals(time);
     }
 }

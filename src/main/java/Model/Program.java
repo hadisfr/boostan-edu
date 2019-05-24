@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Program {
     private Map<Course, ArrayList<PishniaziGroup>> pishniazis;
+    private NumericGrade passGrade;
 
     public Program(Map<Course, ArrayList<PishniaziGroup>> pishniazis) {
         this.pishniazis = pishniazis;
@@ -17,5 +18,9 @@ public class Program {
             if (pishniaziGroup.eval(student))
                 return true;
         return false;
+    }
+
+    public NumericGrade getPassGrade() {
+        return passGrade;
     }
 }

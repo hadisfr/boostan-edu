@@ -14,8 +14,8 @@ public class Student extends Person {
         this.majorYear = majorYear;
     }
 
-    public MajorYear getMajorYear() {
-        return majorYear;
+    public NumericGrade getPassGrade() {
+        return majorYear.getPassGrade();
     }
 
     public boolean hasTakenCourse(Course course) {

@@ -2,6 +2,7 @@ package main.java.Model;
 
 public class Semester {
     enum Term {Fall, Spring, Summer}
+
     private int year;
     private Term term;
 
