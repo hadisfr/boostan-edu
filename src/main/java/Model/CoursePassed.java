@@ -1,7 +1,7 @@
 package main.java.Model;
 
 public class CoursePassed extends CourseEnrollmentState {
-    public CoursePassed(boolean hasEffectOnGPA, boolean countedAsPassedUnit) {
+    public CoursePassed() {
         super(true, true);
     }
 }

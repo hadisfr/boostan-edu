@@ -18,4 +18,10 @@ public abstract class Grade {
     public Type getType() {
         return type;
     }
+
+    public abstract boolean isLessThan(Grade grade);
+
+    public boolean isLessThanEqual(Grade grade) {
+        return equals(grade) || isLessThan(grade);
+    }
 }

@@ -13,4 +13,14 @@ public class NumericGrade extends Grade {
     public float getValue() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((NumericGrade) obj).value == value;
+    }
+
+    @Override
+    public boolean isLessThan(Grade numericGrade) {
+        return value < ((NumericGrade) numericGrade).value;
+    }
 }
