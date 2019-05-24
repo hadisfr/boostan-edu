@@ -4,7 +4,7 @@ public class NumericGrade extends Grade {
     private float value;
 
     public NumericGrade(boolean isReported, float value) {
-        super(isReported);
+        super(isReported, Type.Numeric);
         if (value < 0 || value > 20)
             throw new IllegalArgumentException();
         this.value = value;
