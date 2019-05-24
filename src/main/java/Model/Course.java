@@ -17,12 +17,16 @@ public class Course {
         this.gradeType = gradeType;
     }
 
-    public void addEquivalent(Course equivalent){
+    public void addEquivalent(Course equivalent) {
         equivalents.add(equivalent);
     }
 
     public String getName() {
         return name;
+    }
+
+    public Grade.Type getGradeType() {
+        return gradeType;
     }
 
     public CourseId getId() {
@@ -33,7 +37,7 @@ public class Course {
         return faculty;
     }
 
-    public boolean isEquivalent(Course course){
+    public boolean isEquivalent(Course course) {
         return equivalents.contains(course);
     }
 }

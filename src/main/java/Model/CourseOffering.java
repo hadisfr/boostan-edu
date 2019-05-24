@@ -27,7 +27,12 @@ public class CourseOffering {
     public Course getCourse() {
         return course;
     }
+
     public boolean isEquivalent(Course course) {
         return this.course.isEquivalent(course);
+    }
+
+    public Grade.Type getGradeType() {
+        return course.getGradeType();
     }
 }
