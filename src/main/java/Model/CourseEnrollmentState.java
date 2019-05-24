@@ -1,8 +1,8 @@
 package main.java.Model;
 
 public abstract class CourseEnrollmentState {
-    private boolean hasEffectOnGPA;
-    private boolean countedAsPassedUnit;
+    protected boolean hasEffectOnGPA;
+    protected boolean countedAsPassedUnit;
 
     public CourseEnrollmentState(boolean hasEffectOnGPA, boolean countedAsPassedUnit) {
         this.hasEffectOnGPA = hasEffectOnGPA;
