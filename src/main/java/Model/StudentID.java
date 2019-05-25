@@ -15,4 +15,9 @@ public class StudentID {
     public String getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return id == ((StudentID)obj).getId();
+    }
 }
