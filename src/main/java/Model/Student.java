@@ -1,8 +1,12 @@
 package main.java.Model;
 
+import java.util.HashMap;
+
 public class Student extends Person {
     private StudentID sid;
     private MajorYear majorYear;
+    private HashMap<Semester, Sarterm> sarterms;
+    private Sarterm currentSarterm;
 
     public StudentID getSid() {
         return sid;
@@ -28,5 +32,37 @@ public class Student extends Person {
 
     public int getNumberOfPassedCredits() {
         return 0;
+    }
+
+    public void openNewSarterm(Semester semester) {
+        if (sarterms.containsKey(semester))
+            throw new IllegalArgumentException();
+        Sarterm newSarterm = new Sarterm(semester, this);
+        sarterms.put(semester, newSarterm);
+        currentSarterm = newSarterm;
+    }
+
+    public void enrollCourse(String offeringId) {
+        currentSarterm.enrollCourse(offeringId);
+    }
+
+    public void removeCourse(String offeringId) {
+        currentSarterm.removeCourse(offeringId);
+    }
+
+    public void enterInProgress() {
+        currentSarterm.enterInProgress();
+    }
+
+    public void enterRegistering() {
+        currentSarterm.enterRegistering();
+    }
+
+    public void enterTerminated() {
+        currentSarterm.enterTerminated();
+    }
+
+    public void enterWithdrawing() {
+        currentSarterm.enterWithdrawing();
     }
 }
