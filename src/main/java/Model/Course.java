@@ -19,6 +19,10 @@ public class Course {
         this.effectLessOnGPA = effectLessOnGPA;
     }
 
+    public boolean isEffectLessOnGPA() {
+        return effectLessOnGPA;
+    }
+
     public void addEquivalent(Course equivalent) {
         equivalents.add(equivalent);
     }

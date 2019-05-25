@@ -35,4 +35,9 @@ public class CourseOffering {
     public Grade.Type getGradeType() {
         return course.getGradeType();
     }
+
+    @Override
+    public String toString() {
+        return course + "-" + groupId;
+    }
 }

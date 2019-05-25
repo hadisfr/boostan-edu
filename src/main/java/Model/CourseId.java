@@ -15,4 +15,9 @@ public class CourseId {
     public String getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return id;
+    }
 }
