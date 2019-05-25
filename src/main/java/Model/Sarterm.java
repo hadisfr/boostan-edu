@@ -38,4 +38,20 @@ public class Sarterm {
     public NumericGrade getPassGrade() {
         return student.getPassGrade();
     }
+
+    public void enterInProgress() {
+        state = new InProgressSartermState();
+    }
+
+    public void enterRegistering() {
+        state = new RegisteringSartermState();
+    }
+
+    public void enterTerminated() {
+        state = new TerminatedSartermState();
+    }
+
+    public void enterWithdrawing() {
+        state = new WithdrawingSartermState();
+    }
 }

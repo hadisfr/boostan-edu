@@ -18,6 +18,6 @@ public class StudentID {
 
     @Override
     public boolean equals(Object obj) {
-        return id == ((StudentID)obj).getId();
+        return id == ((StudentID) obj).getId();
     }
 }
