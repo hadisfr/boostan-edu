@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class CourseOfferingRepository {
     private static HashMap<String, CourseOffering> database;
 
-    static  {
+    static {
         database = new HashMap<String, CourseOffering>();
     }
 

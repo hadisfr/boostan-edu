@@ -20,15 +20,15 @@ public abstract class CourseEnrollmentState {
                 ;
     }
 
-    public CourseEnrollmentState setEffectlessOnGPA(){
+    public CourseEnrollmentState setEffectlessOnGPA() {
         throw new IllegalStateException();
     }
 
-    public CourseEnrollmentState setEffectiveOnGPA(){
+    public CourseEnrollmentState setEffectiveOnGPA() {
         throw new IllegalStateException();
     }
 
-    public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean effectlessOnGPA){
+    public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean effectlessOnGPA) {
         throw new IllegalStateException();
     }
 }
