@@ -35,7 +35,10 @@ public class Sarterm {
                 this.getNumberOfCredits().sum(courseOffering.getCourse().getCredit())
         ))
             throw new IllegalArgumentException("Semester max number of credits not satisfied.");
-
+        if (student.hasPassedCourse(courseOffering.getCourse()) || student.hasTakenCourse(courseOffering.getCourse()))
+            throw new IllegalArgumentException("Can't enroll in the same course twice");
+        if (classTimeOverlaps())
+            throw new IllegalArgumentException("Class times overlap");
         state.addCourse(
                 new CourseEnrollment(courseOffering, getPassGrade(), courseOffering.getCourse().isEffectLessOnGPA()),
                 enrollments
@@ -144,5 +147,19 @@ public class Sarterm {
                 result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
         }
         return result;
+    }
+
+    private boolean classTimeOverlaps() {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            for (CourseEnrollment courseEnrollment1 : enrollments.values()) {
+                for (TimeSlot timeSlot : courseEnrollment.getCourseOffering().getClassTime()) {
+                    for (TimeSlot timeSlot1 : courseEnrollment1.getCourseOffering().getClassTime()) {
+                        if (timeSlot.overlaps(timeSlot1) && !timeSlot.equals(timeSlot1))
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
