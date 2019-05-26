@@ -95,7 +95,7 @@ public class Sarterm {
         return true;
     }
 
-    public Credit getGPAUnits() {
+    public Credit getGPACredits() {
         Credit result = new Credit(0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             if (courseEnrollment.isCountedAsPassedUnit())

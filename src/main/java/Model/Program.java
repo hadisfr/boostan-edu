@@ -11,12 +11,12 @@ public class Program {
     private Credit talentedMaximumCredits;
     private Credit mashrootMaximumCredits;
     private Credit normalMinimumCredits;
-    private Credit talentedAverageLimit;
-    private Credit mashrootAverageLimit;
+    private NumericGrade talentedAverageLimit;
+    private NumericGrade mashrootAverageLimit;
 
     public Program(Map<Course, ArrayList<PishniaziGroup>> pishniazis, NumericGrade passGrade, Credit totalMaximumCredits,
                    Credit normalMaximumCredits, Credit talentedMaximumCredits, Credit mashrootMaximumCredits,
-                   Credit normalMinimumCredits, Credit talentedAverageLimit, Credit mashrootAverageLimit) {
+                   Credit normalMinimumCredits, NumericGrade talentedAverageLimit, NumericGrade mashrootAverageLimit) {
         this.pishniazis = pishniazis;
         this.passGrade = passGrade;
         this.totalMaximumCredits = totalMaximumCredits;
@@ -71,11 +71,11 @@ public class Program {
 
     //    TODO: use state pattern
 
-    public Credit getTalentedAverageLimit() {
+    public NumericGrade getTalentedAverageLimit() {
         return talentedAverageLimit;
     }
 
-    public Credit getMashrootAverageLimit() {
+    public NumericGrade getMashrootAverageLimit() {
         return mashrootAverageLimit;
     }
 }

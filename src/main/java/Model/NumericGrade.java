@@ -24,7 +24,7 @@ public class NumericGrade extends Grade {
         return value < ((NumericGrade) numericGrade).value;
     }
 
-    public NumericGrade sum(NumericGrade grade){
+    public NumericGrade sum(NumericGrade grade) {
         return new NumericGrade(value + grade.value);
     }
 }
