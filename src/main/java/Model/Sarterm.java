@@ -89,8 +89,9 @@ public class Sarterm {
         return result;
     }
 
-    public void finalCheck(){
-        if(getCurrentSartermNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
-            throw new IllegalArgumentException();
+    public boolean finalCheck() {
+        if (getCurrentSartermNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
+            return false;
+        return true;
     }
 }
