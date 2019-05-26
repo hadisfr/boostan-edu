@@ -9,6 +9,8 @@ public class Course {
     private HashSet<Course> equivalents;
     private Grade.Type gradeType;
     private boolean effectLessOnGPA;
+    private Credit theoretecialCredit;
+    private Credit practicalCredit;
 
     public Course(String name, CourseId id, Faculty faculty, Grade.Type gradeType, boolean effectLessOnGPA) {
         this.name = name;
@@ -45,5 +47,9 @@ public class Course {
 
     public boolean isEquivalent(Course course) {
         return equivalents.contains(course);
+    }
+
+    public Credit getCredit(){
+        return theoretecialCredit.sum(practicalCredit);
     }
 }
