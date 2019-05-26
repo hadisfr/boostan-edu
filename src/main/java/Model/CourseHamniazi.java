@@ -7,7 +7,6 @@ public class CourseHamniazi implements Pishniazi {
         this.course = course;
     }
 
-    @Override
     public boolean eval(Student student) {
         return student.hasTakenCourse(course);
     }

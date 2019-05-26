@@ -22,7 +22,11 @@ public class Sarterm {
     }
 
     public void enrollCourse(String offeringId) {
+        if (hasExclusive())
+            throw new IllegalArgumentException("Can't have another course alongside an exclusive course");
         CourseOffering courseOffering = CourseOfferingRepository.get(offeringId);
+        if (!student.checkPishniazi(courseOffering.getCourse()))
+            throw new IllegalArgumentException("Pishniazi not satisfied");
         state.addCourse(
                 new CourseEnrollment(courseOffering, getPassGrade(), courseOffering.getCourse().isEffectLessOnGPA()),
                 enrollments
@@ -32,7 +36,12 @@ public class Sarterm {
     public void removeCourse(String offeringId) {
         if (!enrollments.containsKey(offeringId))
             throw new IllegalArgumentException();
-        state.removeCourse(enrollments.get(offeringId), enrollments);
+        CourseEnrollment removedCourse = enrollments.get(offeringId);
+        state.removeCourse(removedCourse, enrollments);
+        if (!student.checkPishniazi(removedCourse.getCourseOffering().getCourse())) {
+            enrollments.put(offeringId, removedCourse);
+            throw new IllegalArgumentException("Hamniazi not satisfied after remove");
+        }
     }
 
     public NumericGrade getPassGrade() {
@@ -53,5 +62,13 @@ public class Sarterm {
 
     public void enterWithdrawing() {
         state = new WithdrawingSartermState();
+    }
+
+    private boolean hasExclusive() {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (student.isExclusive(courseEnrollment.getCourseOffering().getCourse()))
+                return true;
+        }
+        return false;
     }
 }

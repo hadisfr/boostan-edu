@@ -8,7 +8,6 @@ public class RequiredPassedCredit implements Pishniazi {
         this.credit = credit;
     }
 
-    @Override
     public boolean eval(Student student) {
         return student.getNumberOfPassedCredits() >= credit;
     }
