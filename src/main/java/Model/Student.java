@@ -78,15 +78,15 @@ public class Student extends Person {
         return majorYear.getProgram().isExclusive(course);
     }
 
-    public Credit getTotalMaximumCredit(){
+    public Credit getTotalMaximumCredit() {
         return majorYear.getProgram().getTotalMaximumCredits();
     }
 
-    public Credit getSemesterMaxCredit(){
+    public Credit getSemesterMaxCredit() {
         return majorYear.getProgram().getNormalMaximumCredits(); // TODO: complete
     }
 
-    public Credit getSemesterMinimumCredits(){
+    public Credit getSemesterMinimumCredits() {
         return majorYear.getProgram().getNormalMinimumCredits();
     }
 }

@@ -49,7 +49,7 @@ public class Course {
         return equivalents.contains(course);
     }
 
-    public Credit getCredit(){
+    public Credit getCredit() {
         return theoretecialCredit.sum(practicalCredit);
     }
 }
