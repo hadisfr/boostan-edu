@@ -23,4 +23,12 @@ public class Program {
     public NumericGrade getPassGrade() {
         return passGrade;
     }
+
+    public boolean isExclusive(Course course) {
+        if (pishniazis.containsKey(course))
+            for (PishniaziGroup pishniaziGroup : pishniazis.get(course))
+                if (pishniaziGroup.isExclusive())
+                    return true;
+        return false;
+    }
 }

@@ -15,4 +15,11 @@ public class PishniaziGroup {
                 return false;
         return true;
     }
+
+    public boolean isExclusive() {
+        for (Pishniazi pishniazi : pishniazis)
+            if (pishniazi instanceof CourseExclusiveness)
+                return true;
+        return false;
+    }
 }

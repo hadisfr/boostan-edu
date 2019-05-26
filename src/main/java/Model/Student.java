@@ -34,6 +34,14 @@ public class Student extends Person {
         return 0;
     }
 
+    public int getCurrentSartermCreditsNumber() {
+        return 0;
+    }
+
+    public boolean checkPishniazi(Course course) {
+        return this.majorYear.getProgram().canGetCourse(this, course);
+    }
+
     public void openNewSarterm(Semester semester) {
         if (sarterms.containsKey(semester))
             throw new IllegalArgumentException();
@@ -64,5 +72,9 @@ public class Student extends Person {
 
     public void enterWithdrawing() {
         currentSarterm.enterWithdrawing();
+    }
+
+    public boolean isExclusive(Course course) {
+        return majorYear.getProgram().isExclusive(course);
     }
 }

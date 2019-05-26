@@ -26,4 +26,8 @@ public class MajorYear {
     public NumericGrade getPassGrade() {
         return program.getPassGrade();
     }
+
+    public Program getProgram() {
+        return program;
+    }
 }
