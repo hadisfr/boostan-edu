@@ -85,4 +85,8 @@ public class Student extends Person {
     public Credit getSemesterMaxCredit(){
         return majorYear.getProgram().getNormalMaximumCredits(); // TODO: complete
     }
+
+    public Credit getSemesterMinimumCredits(){
+        return majorYear.getProgram().getNormalMinimumCredits();
+    }
 }

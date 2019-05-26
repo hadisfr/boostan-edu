@@ -32,7 +32,7 @@ public class Sarterm {
         ))
             throw new IllegalArgumentException("Total max number of credits not satisfied.");
         if (student.getSemesterMaxCredit().isLessThan(
-                this.currentSartermNumberOfCredits().sum(courseOffering.getCourse().getCredit())
+                this.getCurrentSartermNumberOfCredits().sum(courseOffering.getCourse().getCredit())
         ))
             throw new IllegalArgumentException("Semester max number of credits not satisfied.");
 
@@ -81,7 +81,7 @@ public class Sarterm {
         return false;
     }
 
-    public Credit currentSartermNumberOfCredits() {
+    public Credit getCurrentSartermNumberOfCredits() {
         Credit result = new Credit(0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
@@ -89,4 +89,8 @@ public class Sarterm {
         return result;
     }
 
+    public void finalCheck(){
+        if(getCurrentSartermNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
+            throw new IllegalArgumentException();
+    }
 }
