@@ -27,6 +27,15 @@ public class Sarterm {
         CourseOffering courseOffering = CourseOfferingRepository.get(offeringId);
         if (!student.checkPishniazi(courseOffering.getCourse()))
             throw new IllegalArgumentException("Pishniazi not satisfied");
+        if (student.getTotalMaximumCredit().isLessThan(
+                student.getNumberOfPassedCredits().sum(courseOffering.getCourse().getCredit())
+        ))
+            throw new IllegalArgumentException("Total max number of credits not satisfied.");
+        if (student.getSemesterMaxCredit().isLessThan(
+                this.currentSartermNumberOfCredits().sum(courseOffering.getCourse().getCredit())
+        ))
+            throw new IllegalArgumentException("Semester max number of credits not satisfied.");
+
         state.addCourse(
                 new CourseEnrollment(courseOffering, getPassGrade(), courseOffering.getCourse().isEffectLessOnGPA()),
                 enrollments
@@ -71,4 +80,13 @@ public class Sarterm {
         }
         return false;
     }
+
+    public Credit currentSartermNumberOfCredits() {
+        Credit result = new Credit(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
+        }
+        return result;
+    }
+
 }
