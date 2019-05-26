@@ -8,15 +8,24 @@ public class Program {
     private NumericGrade passGrade;
     private Credit totalMaximumCredits;
     private Credit normalMaximumCredits;
+    private Credit talentedMaximumCredits;
+    private Credit mashrootMaximumCredits;
     private Credit normalMinimumCredits;
+    private Credit talentedAverageLimit;
+    private Credit mashrootAverageLimit;
 
     public Program(Map<Course, ArrayList<PishniaziGroup>> pishniazis, NumericGrade passGrade, Credit totalMaximumCredits,
-                   Credit normalMaximumCredits, Credit normalMinimumCredits) {
+                   Credit normalMaximumCredits, Credit talentedMaximumCredits, Credit mashrootMaximumCredits,
+                   Credit normalMinimumCredits, Credit talentedAverageLimit, Credit mashrootAverageLimit) {
         this.pishniazis = pishniazis;
         this.passGrade = passGrade;
         this.totalMaximumCredits = totalMaximumCredits;
         this.normalMaximumCredits = normalMaximumCredits;
+        this.talentedMaximumCredits = talentedMaximumCredits;
+        this.mashrootMaximumCredits = mashrootMaximumCredits;
         this.normalMinimumCredits = normalMinimumCredits;
+        this.talentedAverageLimit = talentedAverageLimit;
+        this.mashrootAverageLimit = mashrootAverageLimit;
     }
 
     public boolean canGetCourse(Student student, Course course) {
@@ -50,5 +59,23 @@ public class Program {
 
     public Credit getNormalMinimumCredits() {
         return normalMinimumCredits;
+    }
+
+    public Credit getTalentedMaximumCredits() {
+        return talentedMaximumCredits;
+    }
+
+    public Credit getMashrootMaximumCredits() {
+        return mashrootMaximumCredits;
+    }
+
+    //    TODO: use state pattern
+
+    public Credit getTalentedAverageLimit() {
+        return talentedAverageLimit;
+    }
+
+    public Credit getMashrootAverageLimit() {
+        return mashrootAverageLimit;
     }
 }

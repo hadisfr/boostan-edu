@@ -94,4 +94,22 @@ public class Sarterm {
             return false;
         return true;
     }
+
+    public Credit getGPAUnits() {
+        Credit result = new Credit(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.isCountedAsPassedUnit())
+                result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
+        }
+        return result;
+    }
+
+    public NumericGrade getGPAGrade() {
+        NumericGrade result = new NumericGrade(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.isEffectiveOnGPA())
+                result = result.sum((NumericGrade) courseEnrollment.getGrade());
+        }
+        return result;
+    }
 }
