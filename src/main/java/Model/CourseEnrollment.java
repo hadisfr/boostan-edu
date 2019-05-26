@@ -64,4 +64,8 @@ public class CourseEnrollment {
     public boolean isCountedAsPassedUnit() {
         return state.isCountedAsPassedUnit();
     }
+
+    public boolean isTakenOrPassed(){
+        return !(state instanceof CourseWithdrawn);
+    }
 }
