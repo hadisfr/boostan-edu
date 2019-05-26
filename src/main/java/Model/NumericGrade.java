@@ -3,8 +3,8 @@ package main.java.Model;
 public class NumericGrade extends Grade {
     private float value;
 
-    public NumericGrade(boolean isReported, float value) {
-        super(isReported, Type.Numeric);
+    public NumericGrade(float value) {
+        super(Type.Numeric);
         if (value < 0 || value > 20)
             throw new IllegalArgumentException();
         this.value = value;
@@ -22,5 +22,9 @@ public class NumericGrade extends Grade {
     @Override
     public boolean isLessThan(Grade numericGrade) {
         return value < ((NumericGrade) numericGrade).value;
+    }
+
+    public NumericGrade sum(NumericGrade grade){
+        return new NumericGrade(value + grade.value);
     }
 }
