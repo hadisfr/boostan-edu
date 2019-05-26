@@ -89,7 +89,7 @@ public class Sarterm {
         return result;
     }
 
-    public int getNumberOfEnrollments(){
+    public int getNumberOfEnrollments() {
         return enrollments.size();
     }
 

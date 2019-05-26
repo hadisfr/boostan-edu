@@ -65,11 +65,11 @@ public class CourseEnrollment {
         return state.isCountedAsPassedUnit();
     }
 
-    public boolean isTakenOrPassed(){
+    public boolean isTakenOrPassed() {
         return !(state instanceof CourseWithdrawn);
     }
 
-    public boolean isPassed(){
+    public boolean isPassed() {
         return (state instanceof CoursePassed) || (state instanceof CoursePassedEffectlessOnGPA);
     }
 }
