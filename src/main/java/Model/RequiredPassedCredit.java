@@ -2,13 +2,13 @@ package main.java.Model;
 
 public class RequiredPassedCredit implements Pishniazi {
 
-    private float credit;
+    private Credit credit;
 
-    public RequiredPassedCredit(float credit) {
+    public RequiredPassedCredit(Credit credit) {
         this.credit = credit;
     }
 
     public boolean eval(Student student) {
-        return student.getNumberOfPassedCredits() >= credit;
+        return (!credit.isLessThan(student.getNumberOfPassedCredits()));
     }
 }

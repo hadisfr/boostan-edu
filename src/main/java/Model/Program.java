@@ -6,9 +6,15 @@ import java.util.Map;
 public class Program {
     private Map<Course, ArrayList<PishniaziGroup>> pishniazis;
     private NumericGrade passGrade;
+    private Credit totalMaximumCredits;
+    private Credit normalMaximumCredits;
 
-    public Program(Map<Course, ArrayList<PishniaziGroup>> pishniazis) {
+    public Program(Map<Course, ArrayList<PishniaziGroup>> pishniazis, NumericGrade passGrade,
+                   Credit totalMaximumCredits, Credit normalMaximumCredits) {
         this.pishniazis = pishniazis;
+        this.passGrade = passGrade;
+        this.totalMaximumCredits = totalMaximumCredits;
+        this.normalMaximumCredits = normalMaximumCredits;
     }
 
     public boolean canGetCourse(Student student, Course course) {
@@ -30,5 +36,13 @@ public class Program {
                 if (pishniaziGroup.isExclusive())
                     return true;
         return false;
+    }
+
+    public Credit getTotalMaximumCredits() {
+        return totalMaximumCredits;
+    }
+
+    public Credit getNormalMaximumCredits() {
+        return normalMaximumCredits;
     }
 }

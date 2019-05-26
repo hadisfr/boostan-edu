@@ -30,8 +30,8 @@ public class Student extends Person {
         return true;
     }
 
-    public int getNumberOfPassedCredits() {
-        return 0;
+    public Credit getNumberOfPassedCredits() {
+        return null;
     }
 
     public int getCurrentSartermCreditsNumber() {
@@ -76,5 +76,13 @@ public class Student extends Person {
 
     public boolean isExclusive(Course course) {
         return majorYear.getProgram().isExclusive(course);
+    }
+
+    public Credit getTotalMaximumCredit(){
+        return majorYear.getProgram().getTotalMaximumCredits();
+    }
+
+    public Credit getSemesterMaxCredit(){
+        return majorYear.getProgram().getNormalMaximumCredits(); // TODO: complete
     }
 }
