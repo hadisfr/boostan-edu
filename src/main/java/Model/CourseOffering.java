@@ -36,6 +36,10 @@ public class CourseOffering {
         return course.getGradeType();
     }
 
+    public ArrayList<TimeSlot> getClassTime() {
+        return classTime;
+    }
+
     @Override
     public String toString() {
         return course + "-" + groupId;
