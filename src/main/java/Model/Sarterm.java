@@ -32,7 +32,7 @@ public class Sarterm {
         ))
             throw new IllegalArgumentException("Total max number of credits not satisfied.");
         if (student.getSemesterMaxCredit().isLessThan(
-                this.getCurrentSartermNumberOfCredits().sum(courseOffering.getCourse().getCredit())
+                this.getNumberOfCredits().sum(courseOffering.getCourse().getCredit())
         ))
             throw new IllegalArgumentException("Semester max number of credits not satisfied.");
 
@@ -81,7 +81,7 @@ public class Sarterm {
         return false;
     }
 
-    public Credit getCurrentSartermNumberOfCredits() {
+    public Credit getNumberOfCredits() {
         Credit result = new Credit(0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
@@ -89,8 +89,12 @@ public class Sarterm {
         return result;
     }
 
+    public int getNumberOfEnrollments(){
+        return enrollments.size();
+    }
+
     public boolean finalCheck() {
-        if (getCurrentSartermNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
+        if (getNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
             return false;
         return true;
     }
@@ -109,6 +113,35 @@ public class Sarterm {
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             if (courseEnrollment.isEffectiveOnGPA())
                 result = result.sum((NumericGrade) courseEnrollment.getGrade());
+        }
+        return result;
+    }
+
+    public boolean hasTakenCourse(Course course) {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.getCourseOffering().getCourse().isEquivalent(course) ||
+                    courseEnrollment.getCourseOffering().getCourse().equals(course))
+                if (courseEnrollment.isTakenOrPassed())
+                    return true;
+        }
+        return false;
+    }
+
+    public boolean hasPassedCourse(Course course) {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.getCourseOffering().getCourse().isEquivalent(course) ||
+                    courseEnrollment.getCourseOffering().getCourse().equals(course))
+                if (courseEnrollment.isPassed())
+                    return true;
+        }
+        return true;
+    }
+
+    public Credit getNumberOfPassedCredits() {
+        Credit result = new Credit(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.isPassed())
+                result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
         }
         return result;
     }

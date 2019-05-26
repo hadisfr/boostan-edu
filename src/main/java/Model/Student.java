@@ -23,19 +23,25 @@ public class Student extends Person {
     }
 
     public boolean hasTakenCourse(Course course) {
-        return true;
+        return getCurrentSarterm().hasTakenCourse(course);
     }
 
     public boolean hasPassedCourse(Course course) {
-        return true;
+        for (Sarterm sarterm : sarterms)
+            if (sarterm.hasPassedCourse(course))
+                return true;
+        return false;
     }
 
     public Credit getNumberOfPassedCredits() {
-        return null;
+        Credit result = new Credit(0);
+        for (Sarterm sarterm : sarterms)
+            result = result.sum(sarterm.getNumberOfPassedCredits());
+        return result;
     }
 
-    public int getCurrentSartermCreditsNumber() {
-        return 0;
+    public int getCurrentSartermEnrollmentNumbers() {
+        return getCurrentSarterm().getNumberOfEnrollments();
     }
 
     public boolean checkPishniazi(Course course) {
