@@ -31,4 +31,12 @@ public abstract class CourseEnrollmentState {
     public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean effectlessOnGPA) {
         throw new IllegalStateException();
     }
+
+    public boolean isHasEffectOnGPA() {
+        return hasEffectOnGPA;
+    }
+
+    public boolean isCountedAsPassedUnit() {
+        return countedAsPassedUnit;
+    }
 }

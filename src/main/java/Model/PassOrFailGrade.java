@@ -3,8 +3,8 @@ package main.java.Model;
 public class PassOrFailGrade extends Grade {
     private boolean value;
 
-    public PassOrFailGrade(boolean isReported, boolean value) {
-        super(isReported, Type.PassOrFail);
+    public PassOrFailGrade(boolean value) {
+        super(Type.PassOrFail);
         this.value = value;
     }
 

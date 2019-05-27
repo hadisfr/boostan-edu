@@ -5,7 +5,7 @@ public class CourseEnrollment {
     private Grade grade;
     private Grade passGrade;
     private CourseOffering courseOffering;
-    private boolean effectlessOnGPA;
+    private boolean effectlessOnGPA;  // should be used only to infer next state
 
     CourseEnrollment(CourseOffering courseOffering, Grade passGrade, boolean effectlessOnGPA) {
         if (passGrade.getType() != courseOffering.getGradeType())
@@ -31,7 +31,7 @@ public class CourseEnrollment {
         this.grade = grade;
     }
 
-    public void finalizeGrade() {
+    public void finalizeGrade() { //TODO: use outside
         state.finalizeGrade(this.grade, this.passGrade, this.effectlessOnGPA);
     }
 
@@ -49,11 +49,27 @@ public class CourseEnrollment {
 
     public void setEffectlessOnGPA() {
         state = state.setEffectlessOnGPA();
-        this.effectlessOnGPA = effectlessOnGPA;
+        this.effectlessOnGPA = true;
     }
 
     public void setEffectiveOnGPA() {
         state = state.setEffectiveOnGPA();
-        this.effectlessOnGPA = effectlessOnGPA;
+        this.effectlessOnGPA = false;
+    }
+
+    public boolean isEffectiveOnGPA() {
+        return state.isHasEffectOnGPA();
+    }
+
+    public boolean isCountedAsPassedUnit() {
+        return state.isCountedAsPassedUnit();
+    }
+
+    public boolean isTakenOrPassed() {
+        return !(state instanceof CourseWithdrawn);
+    }
+
+    public boolean isPassed() {
+        return (state instanceof CoursePassed) || (state instanceof CoursePassedEffectlessOnGPA);
     }
 }

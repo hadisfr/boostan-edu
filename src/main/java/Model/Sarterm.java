@@ -32,10 +32,13 @@ public class Sarterm {
         ))
             throw new IllegalArgumentException("Total max number of credits not satisfied.");
         if (student.getSemesterMaxCredit().isLessThan(
-                this.getCurrentSartermNumberOfCredits().sum(courseOffering.getCourse().getCredit())
+                this.getNumberOfCredits().sum(courseOffering.getCourse().getCredit())
         ))
             throw new IllegalArgumentException("Semester max number of credits not satisfied.");
-
+        if (student.hasPassedCourse(courseOffering.getCourse()) || student.hasTakenCourse(courseOffering.getCourse()))
+            throw new IllegalArgumentException("Can't enroll in the same course twice");
+        if (classTimeOverlaps())
+            throw new IllegalArgumentException("Class times overlap");
         state.addCourse(
                 new CourseEnrollment(courseOffering, getPassGrade(), courseOffering.getCourse().isEffectLessOnGPA()),
                 enrollments
@@ -81,7 +84,7 @@ public class Sarterm {
         return false;
     }
 
-    public Credit getCurrentSartermNumberOfCredits() {
+    public Credit getNumberOfCredits() {
         Credit result = new Credit(0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
@@ -89,9 +92,74 @@ public class Sarterm {
         return result;
     }
 
+    public int getNumberOfEnrollments() {
+        return enrollments.size();
+    }
+
     public boolean finalCheck() {
-        if (getCurrentSartermNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
+        if (getNumberOfCredits().isLessThan(student.getSemesterMinimumCredits()))
             return false;
         return true;
+    }
+
+    public Credit getGPACredits() {
+        Credit result = new Credit(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.isCountedAsPassedUnit())
+                result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
+        }
+        return result;
+    }
+
+    public NumericGrade getGPAGrade() {
+        NumericGrade result = new NumericGrade(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.isEffectiveOnGPA())
+                result = result.sum((NumericGrade) courseEnrollment.getGrade());
+        }
+        return result;
+    }
+
+    public boolean hasTakenCourse(Course course) {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.getCourseOffering().getCourse().isEquivalent(course) ||
+                    courseEnrollment.getCourseOffering().getCourse().equals(course))
+                if (courseEnrollment.isTakenOrPassed())
+                    return true;
+        }
+        return false;
+    }
+
+    public boolean hasPassedCourse(Course course) {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.getCourseOffering().getCourse().isEquivalent(course) ||
+                    courseEnrollment.getCourseOffering().getCourse().equals(course))
+                if (courseEnrollment.isPassed())
+                    return true;
+        }
+        return true;
+    }
+
+    public Credit getNumberOfPassedCredits() {
+        Credit result = new Credit(0);
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            if (courseEnrollment.isPassed())
+                result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
+        }
+        return result;
+    }
+
+    private boolean classTimeOverlaps() {
+        for (CourseEnrollment courseEnrollment : enrollments.values()) {
+            for (CourseEnrollment courseEnrollment1 : enrollments.values()) {
+                for (TimeSlot timeSlot : courseEnrollment.getCourseOffering().getClassTime()) {
+                    for (TimeSlot timeSlot1 : courseEnrollment1.getCourseOffering().getClassTime()) {
+                        if (timeSlot.overlaps(timeSlot1) && !timeSlot.equals(timeSlot1))
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
