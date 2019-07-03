@@ -11,7 +11,7 @@ public class CourseInProgress extends CourseEnrollmentState {
     }
 
     @Override
-    public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean effectlessOnGPA) {
-        return inferState(grade, passGrade, effectlessOnGPA);
+    public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean noEffectOnGPA) {
+        return inferState(grade, passGrade, noEffectOnGPA);
     }
 }

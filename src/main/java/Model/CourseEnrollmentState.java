@@ -13,14 +13,14 @@ public abstract class CourseEnrollmentState {
         throw new IllegalStateException();
     }
 
-    protected CourseEnrollmentState inferState(Grade grade, Grade passGrade, boolean effectlessOnGPA) {
+    protected CourseEnrollmentState inferState(Grade grade, Grade passGrade, boolean noEffectOnGPA) {
         return grade.isLessThan(passGrade) ?
-                (effectlessOnGPA ? new CourseFailedEffectlessOnGPA() : new CourseFailed()) :
-                (effectlessOnGPA ? new CoursePassedEffectlessOnGPA() : new CoursePassed())
+                (noEffectOnGPA ? new CourseFailednoEffectOnGPA() : new CourseFailed()) :
+                (noEffectOnGPA ? new CoursePassednoEffectOnGPA() : new CoursePassed())
                 ;
     }
 
-    public CourseEnrollmentState setEffectlessOnGPA() {
+    public CourseEnrollmentState setnoEffectOnGPA() {
         throw new IllegalStateException();
     }
 
@@ -28,7 +28,7 @@ public abstract class CourseEnrollmentState {
         throw new IllegalStateException();
     }
 
-    public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean effectlessOnGPA) {
+    public CourseEnrollmentState finalizeGrade(Grade grade, Grade passGrade, boolean noEffectOnGPA) {
         throw new IllegalStateException();
     }
 

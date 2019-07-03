@@ -40,7 +40,7 @@ public class Sarterm {
         if (classTimeOverlaps())
             throw new IllegalArgumentException("Class times overlap");
         state.addCourse(
-                new CourseEnrollment(courseOffering, getPassGrade(), courseOffering.getCourse().isEffectLessOnGPA()),
+                new CourseEnrollment(courseOffering, getPassGrade(), courseOffering.getCourse().isnoEffectOnGPA()),
                 enrollments
         );
     }
@@ -68,8 +68,8 @@ public class Sarterm {
         state = new RegisteringSartermState();
     }
 
-    public void enterTerminated() {
-        state = new TerminatedSartermState();
+    public void enterFinishd() {
+        state = new FinishdSartermState();
     }
 
     public void enterWithdrawing() {
@@ -85,7 +85,7 @@ public class Sarterm {
     }
 
     public Credit getNumberOfCredits() {
-        Credit result = new Credit(0);
+        Credit result = new Credit(0, 0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
         }
@@ -103,7 +103,7 @@ public class Sarterm {
     }
 
     public Credit getGPACredits() {
-        Credit result = new Credit(0);
+        Credit result = new Credit(0, 0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             if (courseEnrollment.isCountedAsPassedUnit())
                 result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());
@@ -141,7 +141,7 @@ public class Sarterm {
     }
 
     public Credit getNumberOfPassedCredits() {
-        Credit result = new Credit(0);
+        Credit result = new Credit(0, 0);
         for (CourseEnrollment courseEnrollment : enrollments.values()) {
             if (courseEnrollment.isPassed())
                 result = result.sum(courseEnrollment.getCourseOffering().getCourse().getCredit());

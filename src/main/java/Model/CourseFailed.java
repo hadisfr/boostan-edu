@@ -11,7 +11,7 @@ public class CourseFailed extends CourseEnrollmentState {
     }
 
     @Override
-    public CourseEnrollmentState setEffectlessOnGPA() {
-        return new CourseFailedEffectlessOnGPA();
+    public CourseEnrollmentState setnoEffectOnGPA() {
+        return new CourseFailednoEffectOnGPA();
     }
 }

@@ -1,4 +1,4 @@
 package main.java.Model;
 
-public class TerminatedSartermState extends SartermState {
+public class FinishdSartermState extends SartermState {
 }

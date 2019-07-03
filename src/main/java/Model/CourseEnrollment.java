@@ -5,20 +5,20 @@ public class CourseEnrollment {
     private Grade grade;
     private Grade passGrade;
     private CourseOffering courseOffering;
-    private boolean effectlessOnGPA;  // should be used only to infer next state
+    private boolean noEffectOnGPA;  // should be used only to infer next state
 
-    CourseEnrollment(CourseOffering courseOffering, Grade passGrade, boolean effectlessOnGPA) {
+    CourseEnrollment(CourseOffering courseOffering, Grade passGrade, boolean noEffectOnGPA) {
         if (passGrade.getType() != courseOffering.getGradeType())
             throw new IllegalArgumentException();
         this.state = new CourseInProgress();
         this.passGrade = passGrade;
         this.courseOffering = courseOffering;
-        this.effectlessOnGPA = effectlessOnGPA;
+        this.noEffectOnGPA = noEffectOnGPA;
     }
 
-    CourseEnrollment(Grade grade, CourseOffering courseOffering, Grade passGrade, boolean effectlessOnGPA,
+    CourseEnrollment(Grade grade, CourseOffering courseOffering, Grade passGrade, boolean noEffectOnGPA,
                      CourseEnrollmentState state) {
-        this(courseOffering, passGrade, effectlessOnGPA);
+        this(courseOffering, passGrade, noEffectOnGPA);
         setGrade(grade);
         this.state = state;
     }
@@ -32,7 +32,7 @@ public class CourseEnrollment {
     }
 
     public void finalizeGrade() { //TODO: use outside
-        state.finalizeGrade(this.grade, this.passGrade, this.effectlessOnGPA);
+        state.finalizeGrade(this.grade, this.passGrade, this.noEffectOnGPA);
     }
 
     Grade getGrade() {
@@ -47,14 +47,14 @@ public class CourseEnrollment {
         state = state.withdraw();
     }
 
-    public void setEffectlessOnGPA() {
-        state = state.setEffectlessOnGPA();
-        this.effectlessOnGPA = true;
+    public void setnoEffectOnGPA() {
+        state = state.setnoEffectOnGPA();
+        this.noEffectOnGPA = true;
     }
 
     public void setEffectiveOnGPA() {
         state = state.setEffectiveOnGPA();
-        this.effectlessOnGPA = false;
+        this.noEffectOnGPA = false;
     }
 
     public boolean isEffectiveOnGPA() {
@@ -70,6 +70,6 @@ public class CourseEnrollment {
     }
 
     public boolean isPassed() {
-        return (state instanceof CoursePassed) || (state instanceof CoursePassedEffectlessOnGPA);
+        return (state instanceof CoursePassed) || (state instanceof CoursePassednoEffectOnGPA);
     }
 }

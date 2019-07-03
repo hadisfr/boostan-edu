@@ -1,7 +1,7 @@
 package main.java.Model;
 
-public class CoursePassedEffectlessOnGPA extends CourseEnrollmentState {
-    public CoursePassedEffectlessOnGPA() {
+public class CoursePassednoEffectOnGPA extends CourseEnrollmentState {
+    public CoursePassednoEffectOnGPA() {
         super(false, true);
     }
 
@@ -11,7 +11,7 @@ public class CoursePassedEffectlessOnGPA extends CourseEnrollmentState {
     }
 
     @Override
-    public CourseEnrollmentState setEffectlessOnGPA() {
+    public CourseEnrollmentState setnoEffectOnGPA() {
         return this;
     }
 }

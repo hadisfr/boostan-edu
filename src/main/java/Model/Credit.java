@@ -1,27 +1,37 @@
 package main.java.Model;
 
 public class Credit {
-    protected float value;
+    protected float practicalCredit;
+    protected float theoreticalCredit;
 
-    public Credit(float value) {
-        this.value = value;
+    public Credit(float practicalCredit, float theoreticalCredit) {
+        this.practicalCredit = practicalCredit;
+        this.theoreticalCredit = theoreticalCredit;
     }
 
     public float getValue() {
-        return value;
+        return this.practicalCredit + this.theoreticalCredit;
+    }
+
+    public float getPracticalCredit() {
+        return practicalCredit;
+    }
+
+    public float getTheoreticalCredit() {
+        return theoreticalCredit;
     }
 
     public Credit sum(Credit credit) {
-        return new Credit(value + credit.getValue());
+        return new Credit(getPracticalCredit() + credit.getPracticalCredit(), getTheoreticalCredit() + credit.getTheoreticalCredit());
     }
 
     @Override
     public boolean equals(Object obj) {
-        return value == ((Credit) obj).value;
+        return getValue() == ((Credit) obj).getValue();
     }
 
     public boolean isLessThan(Credit credit) {
-        return value < credit.value;
+        return getValue() < credit.getValue();
     }
 
     public boolean isLessThanEqual(Credit credit) {

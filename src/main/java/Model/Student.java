@@ -34,7 +34,7 @@ public class Student extends Person {
     }
 
     public Credit getNumberOfPassedCredits() {
-        Credit result = new Credit(0);
+        Credit result = new Credit(0, 0);
         for (Sarterm sarterm : sarterms)
             result = result.sum(sarterm.getNumberOfPassedCredits());
         return result;
@@ -74,8 +74,8 @@ public class Student extends Person {
         getCurrentSarterm().enterRegistering();
     }
 
-    public void enterTerminated() {
-        getCurrentSarterm().enterTerminated();
+    public void enterFinishd() {
+        getCurrentSarterm().enterFinishd();
     }
 
     public void enterWithdrawing() {
@@ -108,7 +108,7 @@ public class Student extends Person {
     }
 
     public NumericGrade getAverage() {
-        Credit creditSum = new Credit(0);
+        Credit creditSum = new Credit(0, 0);
         NumericGrade gradeSum = new NumericGrade(0);
         for (Sarterm sarterm : sarterms) {
             creditSum = creditSum.sum(sarterm.getGPACredits());

@@ -8,21 +8,20 @@ public class Course {
     private Faculty faculty;
     private HashSet<Course> equivalents;
     private Grade.Type gradeType;
-    private boolean effectLessOnGPA;
-    private Credit theoretecialCredit;
-    private Credit practicalCredit;
+    private boolean noEffectOnGPA;
+    private Credit credit;
 
-    public Course(String name, CourseId id, Faculty faculty, Grade.Type gradeType, boolean effectLessOnGPA) {
+    public Course(String name, CourseId id, Faculty faculty, Grade.Type gradeType, boolean noEffectOnGPA) {
         this.name = name;
         this.id = id;
         this.faculty = faculty;
         equivalents = new HashSet<Course>();
         this.gradeType = gradeType;
-        this.effectLessOnGPA = effectLessOnGPA;
+        this.noEffectOnGPA = noEffectOnGPA;
     }
 
-    public boolean isEffectLessOnGPA() {
-        return effectLessOnGPA;
+    public boolean isnoEffectOnGPA() {
+        return noEffectOnGPA;
     }
 
     public void addEquivalent(Course equivalent) {
@@ -50,6 +49,6 @@ public class Course {
     }
 
     public Credit getCredit() {
-        return theoretecialCredit.sum(practicalCredit);
+        return credit;
     }
 }
